@@ -24,9 +24,9 @@ Other regions and versions will be rejected by the builder.
 
 ## Building (Windows)
 
-1. Install [CMake](https://cmake.org/download/) (tick "Add CMake to the system PATH").
-2. Install a C compiler: [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-   with the "Desktop development with C++" workload.
+1. Install [Visual Studio](https://visualstudio.microsoft.com/) (Community is free) or the
+   Build Tools, with the **Desktop development with C++** workload. This includes CMake.
+2. Optional: a standalone [CMake](https://cmake.org/download/) on your PATH also works.
 3. Download this repository (green **Code** button, then **Download ZIP**) and unzip it.
 4. Double-click `build.bat` and select your ISO, or drag your ISO onto `build.bat`.
 5. The executable appears in the `bin` folder.

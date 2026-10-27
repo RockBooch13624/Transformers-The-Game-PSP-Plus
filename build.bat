@@ -18,18 +18,34 @@ if errorlevel 1 goto fail
 
 echo.
 echo [2/3] Checking build tools...
-where cmake >nul 2>nul
-if errorlevel 1 (
-    echo CMake was not found. Install it from https://cmake.org/download/
-    echo and tick "Add CMake to the system PATH" during setup.
+set "CMAKE="
+where cmake >nul 2>nul && set "CMAKE=cmake"
+
+rem If CMake is not on PATH, use the copy that ships with Visual Studio.
+if not defined CMAKE (
+    set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+    if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" (
+        for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -property installationPath`) do (
+            if exist "%%i\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" (
+                set "CMAKE=%%i\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe"
+            )
+        )
+    )
+)
+
+if not defined CMAKE (
+    echo CMake was not found.
+    echo Open the Visual Studio Installer, click Modify, and make sure the
+    echo "Desktop development with C++" workload is installed. It includes CMake.
     goto fail
 )
+echo Using CMake: %CMAKE%
 
 echo.
 echo [3/3] Building the PC executable...
-cmake -S . -B build
+"%CMAKE%" -S . -B build
 if errorlevel 1 goto fail
-cmake --build build --config Release
+"%CMAKE%" --build build --config Release
 if errorlevel 1 goto fail
 
 echo.
