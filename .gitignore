@@ -1,0 +1,23 @@
+# Never commit game files. Users supply their own copy.
+game_data/
+*.iso
+*.ISO
+*.cso
+*.chd
+*.BIN
+*.bin
+*.PBP
+*.SFO
+*.prx
+*.PRX
+
+# Build output
+build/
+bin/
+*.exe
+*.obj
+*.o
+
+# Ghidra project files
+*.gpr
+*.rep/
