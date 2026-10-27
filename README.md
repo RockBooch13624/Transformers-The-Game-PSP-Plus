@@ -1,6 +1,6 @@
 # Transformers: The Game (PSP) - PC Port
 
-A work-in-progress decompilation of the PSP version of *Transformers: The Game* (2007),
+A work-in-progress recomp of the PSP version of *Transformers: The Game* (2007),
 with the goal of a native PC executable that supports real-time editing.
 
 > **Status:** early research. The build pipeline works, but the game is not playable yet.
